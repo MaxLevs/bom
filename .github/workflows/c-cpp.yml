@@ -10,17 +10,17 @@ jobs:
   build:
     strategy:
       matrix:
-        os: [macos, ubuntu, windows]
+        os: [ubuntu, windows]
     runs-on: ${{ matrix.os }}-latest
     steps:
     - uses: actions/checkout@v4
-    - name: get version tag
-      run: echo "VERSION_TAG="$(awk -F "[\"-]" '{ print $2 "-" $3 }' gitrev.c)"" >> $GITHUB_ENV
     - name: pre-build
       run: ./autogen.sh
     - name: configure
       run: ./configure
     - name: build binary
       run: make
-    - name: make distcheck
+    - name: get version tag
+      run: echo "VERSION_TAG="$(awk -F "[\"-]" '{ print $2 "-" $3 }' gitrev.c)"" >> $GITHUB_ENV
+    - name: pack artifact
       run: tar -czvf "bom-${{ env.VERSION_TAG }}-${{ matrix.os }}.tar.gz" bom
