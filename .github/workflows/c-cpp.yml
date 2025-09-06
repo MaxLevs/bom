@@ -18,7 +18,7 @@ jobs:
     - name: autoconf
       run: autoconf
     - name: automake
-      run: automake --add-missing
+      run: automake
     - name: make dist
       run: make dist
     - name: make check
