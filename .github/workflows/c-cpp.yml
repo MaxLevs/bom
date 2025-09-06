@@ -15,8 +15,8 @@ jobs:
     - uses: actions/checkout@v4
     - name: pre-build
       run: sh autogen.sh
-    - name: make dist
-      run: make dist
+    - name: build binary
+      run: make
     - name: make check
       run: make check
     - name: make distcheck
