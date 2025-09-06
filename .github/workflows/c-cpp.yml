@@ -14,9 +14,11 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: pre-build
-      run: sh autogen.sh
+      run: ./autogen.sh
+    - name: configure
+      run: ./configure
     - name: build binary
-      run: make
+      run: make dist
     - name: make check
       run: make check
     - name: make distcheck
